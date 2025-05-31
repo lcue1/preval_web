@@ -1,5 +1,5 @@
 window.onload = function() {
-    writeText();
+ //   writeText();
 }
 const writeText=()=>{
     const initModalScreen =document.getElementById("initModalScreen")
@@ -14,9 +14,11 @@ const writeText=()=>{
             setTimeout(type, 40); 
         }else{
             setTimeout(() => {
-                 console.log("Texto completo");
-            textInitModalScreen.innerText = "Bienvenido!"
-            }, 1500); 
+                initModalScreen.classList.add("initModalScreem--fadeOut");
+                setTimeout(() => {
+                    initModalScreen.remove 
+                }, 1000);
+            }, 1000); 
             
         }
     }; 
