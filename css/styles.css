@@ -1,0 +1,42 @@
+:root{
+    --primaryColor: #0e1b2e;
+}
+
+/* Default styles */
+.initModalScreem{
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: var(--primaryColor);
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.initModalScreem--text{
+color: #fff;
+font-weight: bold;
+font-family: 'Poppins', sans-serif;
+text-align: center;
+}
+
+/*resposive 600 px*/
+@media only screen and (max-width: 600px) {
+  .initModalScreem--text{
+    font-size: 2rem;
+    height: 200px;  
+    width: 400px;
+  }
+}
+
+
+/* 800 px */
+@media only screen and (min-width: 600px) {
+    body{
+        background-color: red;
+    }
+     .initModalScreem--text{
+    font-size: 4rem;
+  }
+}
