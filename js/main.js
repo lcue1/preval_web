@@ -1,5 +1,6 @@
 window.onload = function() {
- //   writeText();
+    writeText();
+ hadleMenu();
 }
 const writeText=()=>{
     const initModalScreen =document.getElementById("initModalScreen")
@@ -16,7 +17,7 @@ const writeText=()=>{
             setTimeout(() => {
                 initModalScreen.classList.add("initModalScreem--fadeOut");
                 setTimeout(() => {
-                    initModalScreen.remove 
+                    initModalScreen.remove()
                 }, 1000);
             }, 1000); 
             
@@ -27,3 +28,13 @@ const writeText=()=>{
 
 }
 
+const hadleMenu = ()=>{
+    const btnMenu = document.getElementById("btnMenu");
+    btnMenu.addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log("click");
+        constnavbarContainer = document.getElementById("navbarContainer");
+        navbarContainer.classList.toggle("navbarContainer--active");
+    })
+
+}

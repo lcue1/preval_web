@@ -1,5 +1,6 @@
 :root {
   --primaryColor: #0e1b2e;
+  --secundaryColor: #50acdd;
   --textColor: #fff;
   --fontFamily: 'Poppins', sans-serif;
 }
@@ -36,16 +37,68 @@
   transition: 1s ease-in-out;
 }
 
-/* ------------------------
-   Responsive Styles
------------------------- */
 
-/* Móviles */
-@media (max-width: 599px) {
+
   .initModalScreem--text {
-    font-size: 2rem;
+    font-size: 1.3rem;
     height: 200px;
     width: 300px;
+  }
+
+  /* Default styles */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 2rem;
+  }
+  .navbarContainer{
+    background-color: rgba(3, 14, 70, 0.9);
+    position: absolute;
+    width: 100%;
+    transition: max-height 0.5s ease-in-out;
+    overflow: hidden;
+    height: 0px;
+    transition: 1s ease-in-out;
+    
+  }
+  .navbar__btnContainer{
+    display: inline-block;
+    border: 4px solid var(--primaryColor);
+    margin-bottom: 2px;
+    border-radius: 10px;
+  }
+  .navbar__icon{
+    font-size: 2rem;
+    color: var(--primaryColor);
+    padding: 1rem;
+  }
+  .navbarContainer__item{
+  }
+  .navbarContainer__link{
+    display: block;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+     font-family: "Inter", sans-serif;
+     font-size: 16dp;
+     
+  }
+.navbarContainer__link:hover{
+    background-color: var(--secundaryColor);
+    color: #0e1b2e;
+      transition:  0.3s ease-in-out;
+  }
+ 
+
+
+/* Móviles */
+@media (max-width: 600px) {
+  
+  .navbarContainer--active{  /* cuando el usuario hace click */
+    height: 250px;
+    transition: 1s ease-in-out;
+
   }
 }
 
@@ -60,6 +113,12 @@
   body {
     background-color: red;
   }
+  
+  .navbarContainer--active{  /* cuando el usuario hace click */
+    height: 250px;
+    transition: 1s ease-in-out;
+
+  }
 }
 
 /* Pantallas grandes */
@@ -67,4 +126,45 @@
   body {
     background-color: blue;
   }
+
+
+  .header {
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row-reverse;
+
+  }
+  .navbarContainer{
+    display: flex;
+    position: relative;
+    width: 100%;
+    transition: max-height 0.5s ease-in-out;
+    overflow: visible;
+    height: auto;
+    
+  }
+  .navbar__btnContainer{
+    display: none;
+    border: 4px solid var(--primaryColor);
+    margin-bottom: 2px;
+    border-radius: 10px;
+    
+  }
+  .navbar__icon{
+    font-size: 2rem;
+    color: var(--primaryColor);
+    padding: 1rem;
+  }
+  .navbarContainer__item{
+  }
+  .navbarContainer__link{
+    display: block;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+     font-family: "Inter", sans-serif;
+     font-size: 16dp;
+     
+  }
+
 }
