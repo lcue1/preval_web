@@ -1,5 +1,5 @@
 window.onload = function() {
-    writeText();
+ //   writeText();
  hadleMenu();
 }
 const writeText=()=>{

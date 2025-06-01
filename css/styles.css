@@ -49,12 +49,16 @@
   .header {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
-    margin-top: 2rem;
+    align-items: center;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+
   }
+  
   .navbarContainer{
     background-color: rgba(3, 14, 70, 0.9);
-    position: absolute;
+    position: fixed;
+    z-index: 100;
     width: 100%;
     transition: max-height 0.5s ease-in-out;
     overflow: hidden;
@@ -67,6 +71,7 @@
     border: 4px solid var(--primaryColor);
     margin-bottom: 2px;
     border-radius: 10px;
+    padding-left: 0;
   }
   .navbar__icon{
     font-size: 2rem;
@@ -84,21 +89,25 @@
      font-size: 16dp;
      
   }
-.navbarContainer__link:hover{
-    background-color: var(--secundaryColor);
-    color: #0e1b2e;
-      transition:  0.3s ease-in-out;
-  }
- 
-
 
 /* Móviles */
 @media (max-width: 600px) {
   
   .navbarContainer--active{  /* cuando el usuario hace click */
-    height: 250px;
+    height: 300px;
     transition: 1s ease-in-out;
 
+  }
+  
+ /**carrucel */
+ .carrucel__img{
+  height: 250px;
+ }
+ 
+.navbarContainer__link:hover{
+    background-color: var(--secundaryColor);
+    color: #0e1b2e;
+      transition:  0.3s ease-in-out;
   }
 }
 
@@ -110,35 +119,43 @@
     width: 600px;
   }
 
+ /**carrucel */
+ .carrucel__img{
+  height: 300px;
+ }
   body {
     background-color: red;
   }
   
   .navbarContainer--active{  /* cuando el usuario hace click */
-    height: 250px;
+    height: 350px;
     transition: 1s ease-in-out;
 
+  }
+  
+.navbarContainer__link:hover{
+    background-color: var(--secundaryColor);
+    color: #0e1b2e;
+      transition:  0.3s ease-in-out;
   }
 }
 
 /* Pantallas grandes */
 @media (min-width: 900px) {
   body {
-    background-color: blue;
+
   }
 
 
   .header {
     justify-content: space-around;
-    align-items: center;
     flex-direction: row-reverse;
+    align-items: center;
 
   }
   .navbarContainer{
     display: flex;
     position: relative;
-    width: 100%;
-    transition: max-height 0.5s ease-in-out;
     overflow: visible;
     height: auto;
     
@@ -158,13 +175,25 @@
   .navbarContainer__item{
   }
   .navbarContainer__link{
-    display: block;
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
-     font-family: "Inter", sans-serif;
-     font-size: 16dp;
-     
-  }
+    padding: 0rem 1rem .5rem 0rem;
+    background-color: white;
+    color: var(--primaryColor);
+    font-size: .0.15rem;
 
+  }
+  
+ /**carrucel */
+ .carrucel__img{
+  height: 450px;
+ }
+.header__img{
+  width: 200px;
+}
+
+
+.navbarContainer__link:hover{
+    border-bottom: 2px solid var(--secundaryColor);
+    border-right: 1px solid var(--primaryColor);
+    color: var(--secundaryColor);
+  }
 }
