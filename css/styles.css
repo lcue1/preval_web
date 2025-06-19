@@ -168,9 +168,7 @@
  .carrucel__img{
   height: 300px;
  }
-  body {
-    background-color: red;
-  }
+ 
   
   .navbarContainer--active{  /* cuando el usuario hace click */
     height: 350px;
