@@ -32,19 +32,16 @@ a       <p class="initModalScreem--text" id="textInitModalScreen"></p>
             </a>
             <ul class="navbarContainer " id="navbarContainer">
                 <li class="navbarContainer__item">
-                    <a href="./index.html" class="navbarContainer__link">Inicio</a>
+                    <a href="./index.php" class="navbarContainer__link">Inicio</a>
                 </li>
                 <li class="navbarContainer__item">
-                    <a href="./pages/productos.html" class="navbarContainer__link">Productos</a>
+                    <a href="/pages/productos.php" class="navbarContainer__link">Productos</a>
                 </li>
                 <li class="navbarContainer__item">
-                    <a href="./index.html" class="navbarContainer__link">Servicios</a>
+                    <a href="/pages/materiales.php" class="navbarContainer__link">Materiales</a>
                 </li>
                 <li class="navbarContainer__item">
-                    <a href="./pages/materiales.html" class="navbarContainer__link">Materiales</a>
-                </li>
-                <li class="navbarContainer__item">
-                    <a href="./index.html" class="navbarContainer__link">Contacto</a>
+                    <a href="/pages/contacto.php" class="navbarContainer__link">Contacto</a>
                 </li>
             </ul>
         </nav>

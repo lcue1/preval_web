@@ -1,3 +1,32 @@
+<?php
+require_once '../conexion.php'; 
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Validar y obtener los datos
+    $nombre = $_POST["nombre"] ?? '';
+    $correo = $_POST["correo"] ?? '';
+    $comentario = $_POST["comentario"] ?? '';
+
+    if (!empty($nombre) && !empty($correo) && !empty($comentario)) {
+        $conexion = (new Conexion())->conectar();
+
+        // Prepara la consulta
+        $stmt = $conexion->prepare("INSERT INTO contacto (nombre, correo, comentario) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $nombre, $correo, $comentario);
+
+        if ($stmt->execute()) {
+            echo "<script>alert('Mensaje enviado correctamente.');</script>";
+        } else {
+            echo "<script>alert('Error al enviar el mensaje.');</script>";
+        }
+
+        $stmt->close();
+        $conexion->close();
+    } else {
+        echo "<script>alert('Por favor, complete todos los campos.');</script>";
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,32 +73,14 @@
   </div>
 <div class="principalContainer">
     <header class="header">
-        <nav class="navigationbar">
-            <a href="#" class="navbar__btnContainer"  id="btnMenu">
-                <i class="fas fa-bars navbar__icon"  ></i>
-            </a>
-            <ul class="navbarContainer " id="navbarContainer">
-                <li class="navbarContainer__item">
-                    <a href="../index.html" class="navbarContainer__link">Inicio</a>
-                </li>
-                <li class="navbarContainer__item">
-                    <a href="./productos.html" class="navbarContainer__link">Productos</a>
-                </li>
-                
-                <li class="navbarContainer__item">
-                    <a href="./materiales.html" class="navbarContainer__link">Materiales</a>
-                </li>
-                <li class="navbarContainer__item">
-                    <a href="./contacto.html" class="navbarContainer__link">Contacto</a>
-                </li>
-            </ul>
-        </nav>
+             <?php require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/pages/parcials/navegacion.php" ?>
+
         <h1 class="header__title">Preval</h1>
         <img class="header__img" src="../img/logo_s-removebg-preview.png" alt="">
     </header>
    </div>
    <section class="container my-5">
-  <h2 class="text-center mb-4 titulo-contacto">Contáctanos</h2>
+  <h2 class="text-center mb-4 titulo-contacto" >Contáctanos</h2>
   <p class="text-center mb-5 descripcion-contacto">
     Si deseas más información sobre nuestros servicios o productos, por favor completa el siguiente formulario y nos pondremos en contacto contigo lo antes posible.
   </p>
@@ -77,18 +88,18 @@
   <div class="row g-4">
     <!-- Formulario -->
     <div class="col-md-6">
-      <form>
+      <form action="" method="POST">
         <div class="mb-3">
           <label for="nombre" class="form-label">Nombre completo</label>
-          <input type="text" class="form-control" id="nombre" placeholder="Ej. Luis Ubillus" required>
+          <input name="nombre" type="text" class="form-control" id="nombre" placeholder="Ej. Luis Ubillus" required>
         </div>
         <div class="mb-3">
           <label for="correo" class="form-label">Correo electrónico</label>
-          <input type="email" class="form-control" id="correo" placeholder="correo@ejemplo.com" required>
+          <input name="correo" type="email" class="form-control" id="correo" placeholder="correo@ejemplo.com" required>
         </div>
         <div class="mb-3">
-          <label for="mensaje" class="form-label">Mensaje</label>
-          <textarea class="form-control" id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+          <label for="mensaje" class="form-label">Comentario</label>
+          <textarea name="comentario" class="form-control" id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
         </div>
         <button type="submit" class="btn btn-primary w-100">Enviar mensaje</button>
       </form>
@@ -99,19 +110,19 @@
       <div class="bg-light p-4 rounded shadow-sm h-100 d-flex flex-column justify-content-between">
         <div>
           <h5 class="mb-3 text-primary"><i class="fas fa-map-marker-alt me-2"></i> Dirección</h5>
-          <p>Av. Industrial 123, Quito, Ecuador</p>
+          <p>San Antonio de Pichincha sector, Quito, Ecuador</p>
 
           <h5 class="mb-3 text-primary"><i class="fas fa-envelope me-2"></i> Correo</h5>
           <p>contacto@preval.ec</p>
 
           <h5 class="mb-3 text-primary"><i class="fas fa-phone me-2"></i> Teléfono</h5>
-          <p>+593 99 123 4567</p>
+          <p>+593 0991237979</p>
         </div>
 
         <!-- Botón de descarga -->
         <div class="mt-4">
-          <a href="../docs/brochure_preval.pdf" class="btn btn-outline-primary w-100" download>
-            <i class="fas fa-file-pdf me-2"></i> Descargar Brochure PDF
+          <a href="../Documento_tecnico.pdf" class="btn btn-outline-primary w-100" download>
+            <i class="fas fa-file-pdf me-2"></i> Descargar Documento tecnico PDF
           </a>
         </div>
       </div>

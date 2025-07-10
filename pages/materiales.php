@@ -24,26 +24,9 @@
   </div>
 <div class="principalContainer">
     <header class="header">
-        <nav class="navigationbar">
-            <a href="#" class="navbar__btnContainer"  id="btnMenu">
-                <i class="fas fa-bars navbar__icon"  ></i>
-            </a>
-            <ul class="navbarContainer " id="navbarContainer">
-                <li class="navbarContainer__item">
-                    <a href="../index.html" class="navbarContainer__link">Inicio</a>
-                </li>
-                <li class="navbarContainer__item">
-                    <a href="./productos.html" class="navbarContainer__link">Productos</a>
-                </li>
-                
-                <li class="navbarContainer__item">
-                    <a href="./materiales.html" class="navbarContainer__link">Materiales</a>
-                </li>
-                <li class="navbarContainer__item">
-                    <a href="./contacto.html" class="navbarContainer__link">Contacto</a>
-                </li>
-            </ul>
-        </nav>
+     
+           <?php require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/pages/parcials/navegacion.php" ?>
+
         <h1 class="header__title">Preval</h1>
         <img class="header__img" src="../img/logo_s-removebg-preview.png" alt="">
     </header>
