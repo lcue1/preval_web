@@ -15,6 +15,7 @@
 require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/includes/auth.php"; 
 verifySession();
 require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/pages/parcials/adminNav.php"; 
+
 ?>
 
 <!-- Contenido principal -->

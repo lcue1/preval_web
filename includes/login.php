@@ -12,7 +12,8 @@ require_once 'conexion.php';
 $conexion = new Conexion();
 $conn = $conexion->conectar();
 
-$stmt = $conn->prepare("SELECT * FROM employer WHERE userName=? AND password=?");
+$stmt = $conn->prepare("SELECT e.userName, e.name, er.rol_name FROM employer e 
+JOIN employer_rol er ON e.rol_id = er.rol_id WHERE userName=? AND password=?");
 if (!$stmt) {
     die("Error en prepare: " . $conn->error);
 }
@@ -32,8 +33,10 @@ if ($resultado->num_rows > 0) {
     }
         session_start();
         $usuario = $resultado->fetch_object();
+      
         $_SESSION["userName"]=$usuario-> userName;
         $_SESSION["name"] = $usuario->name;
+        $_SESSION["rol"] = $usuario->rol_name;
         header("Location: /preval_web/pages/system/index.php");
     
 } else {

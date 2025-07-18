@@ -42,6 +42,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 href="/preval_web/pages/contacto.php" 
                 class="navbarContainer__link <?= ($current_page == 'contacto.php') ? 'active' : '' ?>"
             >
+            
                 Contacto
             </a>
         </li>
