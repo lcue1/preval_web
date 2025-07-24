@@ -6,16 +6,16 @@ class Conexion {
     private $nombreBD = "preval";
 
     function conectar() {
-        $coneccion = new mysqli($this->host, $this->usuarioBD, $this->passwordDB, $this->nombreBD);
-        
-        // Verifica si hay error
-        if ($coneccion->connect_error) {
-            die("Error de conexión: " . $coneccion->connect_error);
+        try {
+            $coneccion = new mysqli($this->host, $this->usuarioBD, $this->passwordDB, $this->nombreBD);
+            if ($coneccion->connect_error) {
+                throw new Exception("DB: " . $coneccion->connect_error);
+            }
+            return $coneccion;
+        } catch (Exception $e) {
+            // Puedes lanzar la excepción para que el controlador la maneje
+            throw $e;
         }
-
-        return $coneccion;
     }
 }
-
-
 ?>

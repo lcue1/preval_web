@@ -16,14 +16,14 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <li class="navbarContainer__item">
             <a 
                 href="/preval_web/index.php" 
-                class="navbarContainer__link <?= ($current_page == 'index.php') ? 'active' : '' ?>"
+                class="navbarContainer__link <?= ($current_page == '/preval_web/public/index.php') ? 'active' : '' ?>"
             >
                 Inicio
             </a>
         </li>
         <li class="navbarContainer__item">
             <a 
-                href="/preval_web/pages/productos.php" 
+                href="/preval_web/public    /productos.php" 
                 class="navbarContainer__link <?= ($current_page == 'productos.php') ? 'active' : '' ?>"
             >
                 Productos
@@ -31,7 +31,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         </li>
         <li class="navbarContainer__item">
             <a 
-                href="/preval_web/pages/materiales.php" 
+                href="/preval_web/public/materiales.php" 
                 class="navbarContainer__link <?= ($current_page == 'materiales.php') ? 'active' : '' ?>"
             >
                 Materiales
@@ -39,7 +39,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         </li>
         <li class="navbarContainer__item">
             <a 
-                href="/preval_web/pages/contacto.php" 
+                href="/preval_web/public/contacto.php" 
                 class="navbarContainer__link <?= ($current_page == 'contacto.php') ? 'active' : '' ?>"
             >
             
@@ -49,7 +49,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <li class="navbarContainer__item">
             <a 
                 id="sistemLink"
-                href="/preval_web/pages/login.php" 
+                href="/preval_web/public/login.php" 
                 class="navbarContainer__link <?= ($current_page == 'login.php') ? 'active' : '' ?>"
             >
                 Empleados

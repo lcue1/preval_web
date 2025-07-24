@@ -1,23 +1,30 @@
 <?php
-require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/models/Contacto.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/preval_web/includes/conexion.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/preval_web/models/Contacto.php";
 
-class ContactoController {
-    public $mensaje = '';
+class ContactoController
+{ 
+    public $message = null;
 
-    public function procesarFormulario() {
+    public function procesarFormulario()
+    {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $nombre = $_POST["nombre"] ?? '';
-            $correo = $_POST["correo"] ?? '';
-            $comentario = $_POST["comentario"] ?? '';
-
-            if (!empty($nombre) && !empty($correo) && !empty($comentario)) {
-                if (Contacto::guardar($nombre, $correo, $comentario)) {
-                    $this->mensaje = "Mensaje enviado correctamente.";
-                } else {
-                    $this->mensaje = "Error al enviar el mensaje.";
+            $name = $_POST["name"] ?? '';
+            $email = $_POST["email"] ?? '';
+            $coment = $_POST["coment"] ?? '';
+            if (!empty($name) && !empty($email) && !empty($coment)) {
+                try {
+                    $conexion = (new Conexion())->conectar();
+                    $contacto = new Contacto($name, $email, $coment);
+                    if($contacto->guardar($conexion)) {
+                        $this->message = "Mensaje enviado correctamente.";
+                    } 
+                    $conexion->close();
+                } catch (Exception $e) {
+                    $this->message =$e->getMessage();
                 }
-            } else {
-                $this->mensaje = "Por favor, complete todos los campos.";
+            }else{
+                $this->message = "Todos los campos son obligatorios.";
             }
         }
     }

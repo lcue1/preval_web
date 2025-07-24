@@ -17,7 +17,6 @@
         <link rel="stylesheet" href="../css/reset.css">
         <link rel="stylesheet" href="../css/styles.css">
         <link rel="stylesheet" href="../css/productos.css">
-        <link rel="stylesheet" href="../css/modals.css">
 
         <style>
             .titulo-contacto {
@@ -44,7 +43,7 @@
   </div>
 <div class="principalContainer">
     <header class="header">
-             <?php require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/pages/parcials/navegacion.php" ?>
+             <?php require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/parcials/navegacion.php" ?>
 
         <h1 class="header__title">Preval</h1>
         <img class="header__img" src="../img/logo_s-removebg-preview.png" alt="">
@@ -57,29 +56,29 @@
   </p>
 
   <div class="row g-4">
+    <?php if (!empty($message)): ?><!-- Mostrar mensaje de éxito o error -->
+      <div class="col-12 mt-3">
+        <div id="alertMessage" class="alert alert-info text-center"><?= htmlspecialchars($message) ?></div>
+      </div>
+    <?php endif; ?>
     <!-- Formulario -->
     <div class="col-md-6">
       <form action="" method="POST">
         <div class="mb-3">
-          <label for="nombre" class="form-label">Nombre completo</label>
-          <input name="nombre" type="text" class="form-control" id="nombre" placeholder="Ej. Luis Ubillus" required>
+          <label for="name" class="form-label">Nombre completo</label>
+          <input name="name" type="text" class="form-control" id="nombre" placeholder="Ej. Luis Ubillus" required>
         </div>
         <div class="mb-3">
-          <label for="correo" class="form-label">Correo electrónico</label>
-          <input name="correo" type="email" class="form-control" id="correo" placeholder="correo@ejemplo.com" required>
+          <label for="email" class="form-label">Correo electrónico</label>
+          <input name="email" type="email" class="form-control" id="correo" placeholder="correo@ejemplo.com" required>
         </div>
         <div class="mb-3">
-          <label for="mensaje" class="form-label">Comentario</label>
-          <textarea name="comentario" class="form-control" id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+          <label for="coment" class="form-label">Describe tu requerimiento</label>
+          <textarea name="coment" class="form-control" id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
         </div>
         <button type="submit" class="btn btn-primary w-100">Enviar mensaje</button>
       </form>
     </div>
-    <?php if (!empty($mensaje)): ?>
-      <div class="col-12 mt-3">
-        <div class="alert alert-info text-center"><?= htmlspecialchars($mensaje) ?></div>
-      </div>
-    <?php endif; ?>
     <!-- Información de contacto + descarga -->
     <div class="col-md-6">
       <div class="bg-light p-4 rounded shadow-sm h-100 d-flex flex-column justify-content-between">
@@ -104,6 +103,13 @@
     </div>
   </div>
 </section>
+<script src="/preval_web/public/js/removeMessage.js"></script>
+<script>
 
+  const alertMsg = document.getElementById('alertMessage');
+  if (alertMsg) {
+    removeMessage(alertMsg,5000); // 3 segundos
+  }
+</script>
 </body>
 </html>

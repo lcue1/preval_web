@@ -26,7 +26,7 @@ a       <p class="initModalScreem--text" id="textInitModalScreen"></p>
      -->
 <div class="principalContainer">
     <header class="header">
-       <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/preval_web/pages/parcials/navegacion.php"; ?>
+       <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/preval_web/parcials/navegacion.php"; ?>
         <h1 class="header__title">Preval</h1>
         <img class="header__img" src="./img/logo_s-removebg-preview.png" alt="">
     </header>

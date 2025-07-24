@@ -23,7 +23,7 @@
   </div>
 <div class="principalContainer">
     <header class="header">
-       <?php require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/pages/parcials/navegacion.php" ?>
+       <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/preval_web/parcials/navegacion.php"; ?>
         <h1 class="header__title">Preval</h1>
         <img class="header__img" src="../img/logo_s-removebg-preview.png" alt="">
     </header>
@@ -39,7 +39,7 @@
                             <h3 class="mb-0">Iniciar Sesión</h3>
                         </div>
                         
-                        <form id="loginForm" method="POST" action="/preval_web/includes/login.php">
+                        <form id="loginForm" method="POST" action="">
                             <div class="mb-3">
                                 <label for="username" class="form-label">Usuario</label>
                                 <div class="input-group">
