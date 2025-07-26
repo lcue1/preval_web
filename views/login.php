@@ -38,7 +38,11 @@
                             <img src="../img/logo_s-removebg-preview.png" alt="Logo" width="80" class="mb-3">
                             <h3 class="mb-0">Iniciar Sesión</h3>
                         </div>
-                        
+                        <?php if ($mensaje): ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?php echo htmlspecialchars($mensaje); ?>
+                            </div>
+                        <?php endif; ?>
                         <form id="loginForm" method="POST" action="">
                             <div class="mb-3">
                                 <label for="username" class="form-label">Usuario</label>

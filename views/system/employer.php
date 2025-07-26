@@ -100,12 +100,15 @@
 <body>
 
 <?php
-require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/includes/auth.php"; 
-verifySession();
-require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/pages/parcials/adminNav.php"; 
+require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/parcials/adminNav.php"; 
+
+
 ?>
 <main class="col-sm-12 col-md-9 col-lg-10 px-4 py-3">
   <h3 class="title">Gestión de usuarios</h3>
+  <?php if($message): ?>
+    <div class="alert alert-danger"><?= htmlspecialchars($message) ?></div> 
+  <?php endif; ?>
   
   <!-- Botones de control -->
   <div class="btn-container">
@@ -134,9 +137,7 @@ require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/pages/parcials/adminNav.php"
 
       <div class="mb-3">
         <label for="rolId" class="form-label">Rol de usuario</label>
-        <?php 
-        require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/models/users.php";
-        $getRols = get_rols(); 
+        <?php ;  
         if($getRols["status"] == false): ?>
           <div class="alert alert-danger"><?= $getRols["error"] ?></div>
         <?php else: ?>
@@ -177,44 +178,43 @@ require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/pages/parcials/adminNav.php"
       <table class="table table-custom table-hover">
         <thead>
           <tr>
-            <th><i class="bi bi-person me-2"></i>Usuario</th>
+            <th><i class="bi bi-person me-2"></i>Nombre de usuario</th>
             <th><i class="bi bi-card-text me-2"></i>Nombre</th>
             <th><i class="bi bi-lock me-2"></i>Contraseña</th>
             <th><i class="bi bi-person-badge me-2"></i>Rol</th>
+            <th><i class="bi bi-person-badge me-2"></i>Estado</th>
             <th><i class="bi bi-pencil me-2"></i>Editar</th>
             <th><i class="bi bi-trash me-2"></i>Eliminar</th>
           </tr>
         </thead>
         <tbody>
-          <?php 
-            require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/models/users.php";
-            $users = getAllUsers();
-          ?>
+          
 
-          <?php if(empty($users)): ?>
+          <?php if(empty($employers)): ?> 
             <tr>
               <td colspan="6" class="text-center">No hay registros</td>
             </tr>
           <?php else: ?>
-            <?php foreach($users as $user): ?>
+            <?php foreach($employers as $employer): ?>
               <tr>
-                <td><?= $user->userName ?></td>
-                <td><?= $user->name ?></td>
+                <td><?= $employer->userNameEmployer ?></td>
+                <td><?= $employer->name ?></td>
                 <td>••••••••</td>
-                <td><?= $user->rol_name ?></td>
+                <td><?= $employer->rolId ?></td>
+                <td><?= $employer->state ?></td>
                 <td>
                   <a href="#" class="btn btn-sm btn-outline-primary"
                     onclick="editUser(
-                      '<?= htmlspecialchars($user->userName, ENT_QUOTES) ?>',
-                      '<?= htmlspecialchars($user->name, ENT_QUOTES) ?>',
-                      '<?= htmlspecialchars($user->rol_id, ENT_QUOTES) ?>',
-                      '<?= htmlspecialchars($user->rol_name, ENT_QUOTES) ?>',
-                      '<?= htmlspecialchars($user->password, ENT_QUOTES) ?>')">
+                      '<?= htmlspecialchars($employer->userName, ENT_QUOTES) ?>',
+                      '<?= htmlspecialchars($employer->name, ENT_QUOTES) ?>',
+                      '<?= htmlspecialchars($employer->rol_id, ENT_QUOTES) ?>',
+                      '<?= htmlspecialchars($employer->rol_name, ENT_QUOTES) ?>',
+                      '<?= htmlspecialchars($employer->password, ENT_QUOTES) ?>')">
                     <i class="bi bi-pencil-square"></i>
                   </a>
                 </td>
                 <td>
-                  <a href="<?= "/preval_web/models/users.php?userName=".$user->userName ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Estás seguro de eliminar este usuario?')">
+                  <a href="<?= "/preval_web/models/users.php?userName=".$employer->userName ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Estás seguro de eliminar este usuario?')">
                     <i class="bi bi-trash"></i>
                   </a>
                 </td>
@@ -229,7 +229,6 @@ require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/pages/parcials/adminNav.php"
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 <script>
   const messageFromServer = document.getElementById("messageFromServer");
   if(messageFromServer){

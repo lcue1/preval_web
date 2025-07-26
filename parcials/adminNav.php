@@ -147,14 +147,14 @@ directAccesDeniged();
   <div class="offcanvas-body">
     <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link" href="/preval_web/pages/system/">
+        <a class="nav-link" href="/preval_web/public/system/dashboard.php">
           <i class="bi bi-house-door"></i> Inicio
         </a>
       </li>
       
-      <?php if ($_SESSION['rol'] == 'admin'): ?>
+      <?php if ($_SESSION['rolId'] == 1): ?>
       <li class="nav-item">
-        <a class="nav-link" href="/preval_web/pages/system/users.php">
+        <a class="nav-link" href="/preval_web/public/system/employer.php">
           <i class="bi bi-people"></i> Gestionar Usuarios
         </a>
       </li>
