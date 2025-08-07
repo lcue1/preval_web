@@ -43,7 +43,10 @@
   </div>
 <div class="principalContainer">
     <header class="header">
-             <?php require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/parcials/navegacion.php" ?>
+             <?php 
+             require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/parcials/navegacion.php";
+             require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/utils/FlashMessage.php";
+             ?>
 
         <h1 class="header__title">Preval</h1>
         <img class="header__img" src="../img/logo_s-removebg-preview.png" alt="">
@@ -55,27 +58,40 @@
     Si deseas más información sobre nuestros servicios o productos, por favor completa el siguiente formulario y nos pondremos en contacto contigo lo antes posible.
   </p>
 
+<section class="container my-5">
+  
+  <?php
+  if(!empty($message)): ?>
+    <div class="alert alert-info" role="alert" id="alertMessage">
+      <?php echo htmlspecialchars($message); ?>
+  </div> 
+  <?php endif; ?>
+
+
+  <!-- Resto de tu formulario... -->
+</section>
+
   <div class="row g-4">
-    <?php if (!empty($message)): ?><!-- Mostrar mensaje de éxito o error -->
-      <div class="col-12 mt-3">
-        <div id="alertMessage" class="alert alert-info text-center"><?= htmlspecialchars($message) ?></div>
-      </div>
-    <?php endif; ?>
+ 
     <!-- Formulario -->
     <div class="col-md-6">
       <form action="" method="POST">
         <div class="mb-3">
           <label for="name" class="form-label">Nombre completo</label>
-          <input name="name" type="text" class="form-control" id="nombre" placeholder="Ej. Luis Ubillus" required>
+          <input name="name" type="text" class="form-control" id="nombre" placeholder="Ej. Luis Ubillus" >
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Correo electrónico</label>
           <input name="email" type="email" class="form-control" id="correo" placeholder="correo@ejemplo.com" required>
         </div>
         <div class="mb-3">
+          <label for="phone" class="form-label">Teléfono</label>
+          <input name="phone" type="tel" class="form-control" id="telefono" placeholder="+593 0991234567" required>
+        </div>
+        <div class="mb-3">
           <label for="coment" class="form-label">Describe tu requerimiento</label>
           <textarea name="coment" class="form-control" id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
-        </div>
+        </div>  
         <button type="submit" class="btn btn-primary w-100">Enviar mensaje</button>
       </form>
     </div>

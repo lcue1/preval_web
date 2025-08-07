@@ -3,9 +3,8 @@ require_once $_SERVER['DOCUMENT_ROOT']."/preval_web/controllers/EmployerControll
 $employerController = new EmployerController();
 $employerController->processRequest();
 $employers = $employerController->getEmployers();
-$message = $employerController->getMessage();
-var_dump($employers);
-var_dump($message);
+$rols = $employerController->getRols();
+//var_dump($rols);
 require_once $_SERVER['DOCUMENT_ROOT']."/preval_web/views/system/employer.php";
 
 

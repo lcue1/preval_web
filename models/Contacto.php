@@ -1,22 +1,15 @@
 <?php
 class Contacto {
-    private $nombre = null;
-    private $correo = null;
-    private $comentario = null;
+    
 
-    function __construct($name, $email, $content) {
-        $this->nombre = $name;
-        $this->correo = $email;
-        $this->comentario = $content;
-    }
 
-    public function guardar($conexion) {
+    public function saveComment($conexion,$dataComment) {
         try {
-            $stmt = $conexion->prepare("INSERT INTO coments (name, email, coment, state, date) VALUES (?, ?, ?, 'E', NOW())");
+            $stmt = $conexion->prepare("INSERT INTO coments (name, email, phone, coment, state, date) VALUES (?, ?, ?, ?, 'E', NOW())");
             if (!$stmt) {
                 throw new Exception("Error en prepare: " . $conexion->error);
             }
-            if (!$stmt->bind_param("sss", $this->nombre, $this->correo, $this->comentario)) {
+            if (!$stmt->bind_param("ssss", $dataComment['name'], $dataComment['email'], $dataComment['phone'], $dataComment['coment'])) {
                 throw new Exception("Error en bind_param: " . $stmt->error);
             }
             if (!$stmt->execute()) {
@@ -26,10 +19,14 @@ class Contacto {
                     throw new Exception("Error en execute: " . $stmt->error);
                 }
             }
-            $stmt->close();
             return true;
         } catch (Exception $e) {
             throw $e;
+        }
+        finally {
+            if (isset($stmt)) {
+                $stmt->close();
+            }
         }
     }
 }

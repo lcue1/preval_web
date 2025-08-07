@@ -17,5 +17,5 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // Redirige al login o página principal
-header("Location: /preval_web/pages/login.php");
+header("Location: /preval_web/public/login.php");
 exit;

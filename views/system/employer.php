@@ -100,15 +100,24 @@
 <body>
 
 <?php
-require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/parcials/adminNav.php"; 
-
+require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/parcials/employerNab.php"; 
+require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/utils/flashMessage.php";
 
 ?>
 <main class="col-sm-12 col-md-9 col-lg-10 px-4 py-3">
   <h3 class="title">Gestión de usuarios</h3>
-  <?php if($message): ?>
-    <div class="alert alert-danger"><?= htmlspecialchars($message) ?></div> 
-  <?php endif; ?>
+  <?php 
+  $error = FlashMessage::get('error');
+$success = FlashMessage::get('success');
+
+if ($error): ?>
+    <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
+<?php endif; 
+
+if ($success): ?>
+    <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
+<?php endif;
+  ?>
   
   <!-- Botones de control -->
   <div class="btn-container">
@@ -122,29 +131,30 @@ require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/parcials/adminNav.php";
 
   <!-- Contenedor colapsable del FORMULARIO -->
   <div class="collapse mb-4 form-container" id="userFormCollapse">
-    <form action="/preval_web/models/users.php" method="post">
+    <form action="" method="post">
       <h3 id="formTitle"><i class="bi bi-person-plus me-2"></i>Agregar usuario</h3>
-
+      <input type="hidden" name="employerId" id="employerId" value="">
       <div class="mb-3">
         <label for="userName" class="form-label">Nombre de usuario</label>
-        <input type="text" class="form-control" id="userName" name="userName" placeholder="Ingrese su usuario">
+        <input type="text" class="form-control" id="userName" name="userName" placeholder="Ingrese un usuario" require>
       </div>
 
       <div class="mb-3">
         <label for="name" class="form-label">Nombre completo</label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese su nombre">
+        <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese un nombre" require>
       </div>
 
       <div class="mb-3">
         <label for="rolId" class="form-label">Rol de usuario</label>
-        <?php ;  
-        if($getRols["status"] == false): ?>
-          <div class="alert alert-danger"><?= $getRols["error"] ?></div>
+        <?php 
+        if(empty($rols)): ?>
+        <div class="alert alert-warning">No hay roles</div>
+
         <?php else: ?>
           <select name="rolId" class="form-select" required>
             <option value="" id="option_rol_edit">Seleccione un rol</option>
-            <?php foreach($getRols["users"] as $rol): ?>
-              <option value="<?= $rol->rol_id ?>"><?= $rol->rol_name ?></option>
+            <?php foreach($rols as $rol): ?>
+              <option value="<?= $rol->rolId ?>"><?= $rol->rolName ?></option>
             <?php endforeach; ?>
           </select>
         <?php endif; ?>
@@ -153,13 +163,22 @@ require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/parcials/adminNav.php";
       <div class="mb-3">
         <label for="password" class="form-label">Contraseña</label>
         <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese su contraseña">
+        <label class="form-label">Estado</label>
+      </div><div class="mb-3">
+        <div class="form-check form-check-inline">
+          <input type="radio" class="form-check-input" id="active" name="state" value="A" checked>
+          <label class="form-check-label" for="active">Activo</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input type="radio" class="form-check-input" id="inactive" name="state" value="I">
+          <label class="form-check-label" for="inactive">Inactivo</label>
+        </div>
       </div>
-
       <div class="d-flex gap-2">
         <button id="btnSubmit" type="submit" name="operation" class="btn btn-custom-primary" value="save">
           <i class="bi bi-save me-2"></i>Guardar
         </button>
-        <a id="cancelBtn" href="/preval_web/pages/system/users.php" class="btn btn-custom-secondary" hidden>
+        <a id="cancelBtn" href="/preval_web/public/system/employer.php" class="btn btn-custom-secondary" hidden>
           <i class="bi bi-x-circle me-2"></i>Cancelar
         </a>
       </div>
@@ -188,7 +207,6 @@ require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/parcials/adminNav.php";
           </tr>
         </thead>
         <tbody>
-          
 
           <?php if(empty($employers)): ?> 
             <tr>
@@ -204,19 +222,20 @@ require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/parcials/adminNav.php";
                 <td><?= $employer->state ?></td>
                 <td>
                   <a href="#" class="btn btn-sm btn-outline-primary"
-                    onclick="editUser(
-                      '<?= htmlspecialchars($employer->userName, ENT_QUOTES) ?>',
+                    onclick="editEmployer(
+                      '<?= htmlspecialchars($employer->userNameEmployer, ENT_QUOTES) ?>',
                       '<?= htmlspecialchars($employer->name, ENT_QUOTES) ?>',
-                      '<?= htmlspecialchars($employer->rol_id, ENT_QUOTES) ?>',
-                      '<?= htmlspecialchars($employer->rol_name, ENT_QUOTES) ?>',
-                      '<?= htmlspecialchars($employer->password, ENT_QUOTES) ?>')">
+                      '<?= htmlspecialchars($employer->rolId, ENT_QUOTES) ?>',
+                      '<?= htmlspecialchars($employer->idEmployer, ENT_QUOTES) ?>',
+                      '<?= htmlspecialchars($employer->state, ENT_QUOTES) ?>')">
                     <i class="bi bi-pencil-square"></i>
                   </a>
                 </td>
                 <td>
-                  <a href="<?= "/preval_web/models/users.php?userName=".$employer->userName ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Estás seguro de eliminar este usuario?')">
-                    <i class="bi bi-trash"></i>
-                  </a>
+                 <a href="#" class="btn btn-sm btn-outline-danger" 
+                  onclick="deleteEmployer(event, '<?= htmlspecialchars($employer->idEmployer, ENT_QUOTES) ?>')">
+                  <i class="bi bi-trash"></i>
+                </a>
                 </td>
               </tr>
             <?php endforeach; ?>
@@ -237,33 +256,56 @@ require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/parcials/adminNav.php";
     }, 3000);
   }
 
-  function editUser(userName, name, rol_id, rol_name, password) {
-    document.getElementById('formTitle').innerHTML = '<i class="bi bi-pencil-square me-2"></i>Editar usuario';
-    let userNameLabel = document.getElementById('userName')
-    userNameLabel.value = userName;
-    userNameLabel.readOnly = true;
-    document.getElementById('name').value = name;
-    const rolOption = document.getElementById('option_rol_edit');
-    rolOption.value = rol_id;  
-    rolOption.textContent = rol_name;
-    document.getElementById('password').value = password;
+ function editEmployer(userNameEmployer, name, rolId, employerId, state, event) {
+    // Prevenir el comportamiento por defecto del evento
+    if(event) event.preventDefault();
     
-    const btnSubmit = document.getElementById('btnSubmit')
+    // Configurar el ID del usuario
+    const idEmployerInput = document.getElementById('employerId');
+    idEmployerInput.value = employerId; 
+    // Configurar título y campos del formulario
+    document.getElementById('formTitle').innerHTML = '<i class="bi bi-pencil-square me-2"></i>Editar usuario';
+    
+    const userNameLabel = document.getElementById('userName');
+    userNameLabel.value = userNameEmployer;
+   // userNameLabel.readOnly = true;
+    
+    document.getElementById('name').value = name;
+    
+    // Manejar el select de roles CORRECTAMENTE
+    const rolSelect = document.querySelector('select[name="rolId"]');
+    rolSelect.value = rolId; // Usar el ID numérico directamente
+    
+    // Manejar el estado
+    document.getElementById(state === 'A' ? 'active' : 'inactive').checked = true;
+    
+    // Configurar campo de contraseña
+    const passwordField = document.getElementById('password');
+    passwordField.value = '';
+    passwordField.placeholder = 'Dejar vacío para no cambiar';
+    
+    // Configurar botón de submit
+    const btnSubmit = document.getElementById('btnSubmit');
     btnSubmit.innerHTML = '<i class="bi bi-arrow-repeat me-2"></i>Actualizar';
     btnSubmit.value = "update";
     document.getElementById('cancelBtn').hidden = false;
     
-    // Mostrar el formulario si está oculto
-    const formCollapse = new bootstrap.Collapse(document.getElementById('userFormCollapse'), {
-      toggle: true
-    });
+    // Mostrar el formulario
+    new bootstrap.Collapse(document.getElementById('userFormCollapse'), { toggle: true });
     
     // Ocultar mensaje si existe
     const messageFromServer = document.getElementById("messageFromServer");
-    if(messageFromServer){
-      messageFromServer.remove()
-    }
+    if(messageFromServer) messageFromServer.remove();
+}
+
+
+function deleteEmployer( event,idRmployer) {
+    if (confirm('¿Estás seguro de eliminar este usuario?')) {
+    // Redireccionar al endpoint de eliminación
+    window.location.href = `/preval_web/public/system/employer.php?idEmployer=${idRmployer}`;
   }
+  
+}
 </script>
 
 </body>

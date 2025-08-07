@@ -159,15 +159,19 @@ directAccesDeniged();
         </a>
       </li>
       <?php endif; ?>
-      
+         <?php if ($_SESSION['rolId'] == 1): ?>
       <li class="nav-item">
-        <a class="nav-link" href="/preval_web/pages/system/coments.php">
-          <i class="bi bi-chat-square-text"></i> Gestionar Comentarios
+        <a class="nav-link" href="/preval_web/public/system/product.php">
+          <i class="bi bi-chat-square-text"></i> Productos
         </a>
       </li>
-      
+      <?php endif; ?>
       <div class="menu-divider"></div>
-      
+       <li class="nav-item">
+        <a class="nav-link" href="/preval_web/public/system/comments.php">
+          <i class="bi bi-chat-square-text"></i> Comentarios
+        </a>
+      </li>
       <li class="nav-item">
         <form action="/preval_web/includes/logout.php" method="POST">
           <button type="submit" class="nav-link logout-btn">
