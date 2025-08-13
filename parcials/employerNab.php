@@ -171,7 +171,26 @@ directAccesDeniged();
         <a class="nav-link" href="/preval_web/public/system/comments.php">
           <i class="bi bi-chat-square-text"></i> Comentarios
         </a>
+        <li class="nav-item">
+  <a class="nav-link collapsed" data-bs-toggle="collapse" href="#cotizacionesCollapse" role="button">
+    <i class="bi bi-chat-square-text"></i> Cotizaciones
+    <i class="bi bi-chevron-down ms-auto"></i>
+  </a>
+  <div class="collapse" id="cotizacionesCollapse">
+    <ul class="nav flex-column ps-4">
+      <li class="nav-item">
+        <a class="nav-link" href="/preval_web/public/system/quotation.php?action=add">
+          <i class="bi bi-file-earmark-text"></i> Nueva Cotización
+        </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/preval_web/public/system/quotation.php">
+          <i class="bi bi-list-ul"></i> Lista de Cotizaciones
+        </a>
+      </li>
+    </ul>
+  </div>
+</li>
       <li class="nav-item">
         <form action="/preval_web/includes/logout.php" method="POST">
           <button type="submit" class="nav-link logout-btn">

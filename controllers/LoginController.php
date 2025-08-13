@@ -14,6 +14,7 @@ class LoginController{
                     $login = new Login($userName, $password);
                     if ($login->autenticate($conexion)) {
                         session_start();
+                        $_SESSION["idEmployer"] = $login->getIdEmployer();
                         $_SESSION["name"] = $login->getName();
                         $_SESSION["rolId"] = $login->getRolId();
                         header("Location: /preval_web/public/system/dashboard.php");

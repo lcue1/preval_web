@@ -6,7 +6,11 @@ require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/utils/FlashMessage.php";
 class EmployerController {
     private $employers = null;
     private $rols = null;
-
+    function __construct(){
+        
+        require_once $_SERVER['DOCUMENT_ROOT'].'/preval_web/includes/auth.php';
+        verifySession();
+    }
     public function processRequest() {
         require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/includes/auth.php"; 
         verifySession();

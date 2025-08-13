@@ -1,5 +1,6 @@
 <?php
 class Login{
+    private $idEmployer = null;
     private $userName = null;
     private $password = null;
     private $name = null;
@@ -12,7 +13,7 @@ class Login{
     try {
         // 1. Primero buscamos SOLO por nombre de usuario
         $stmt = $conexion->prepare("
-            SELECT e.userNameEmployer, e.password, e.name, er.rolId 
+            SELECT e.idEmployer, e.userNameEmployer, e.password, e.name, er.rolId 
             FROM employer e
             JOIN employerrol er ON e.rolId = er.rolId 
             WHERE e.userNameEmployer = ? AND e.state = 'A'
@@ -36,8 +37,10 @@ class Login{
             
             // 2. Verificamos la contraseña con el hash almacenado
             if (password_verify($this->password, $usuario->password)) {
+                $this->idEmployer = $usuario->idEmployer;
                 $this->rolId = $usuario->rolId;
                 $this->name = $usuario->name;
+
                 return true; // Autenticación exitosa
             }
         }
@@ -52,6 +55,9 @@ class Login{
         }
     }
 }
+    public function getIdEmployer() {
+        return $this->idEmployer;
+    }
     public function getName() {
         return $this->name;
     }
