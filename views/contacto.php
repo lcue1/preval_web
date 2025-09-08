@@ -78,7 +78,7 @@
       <form action="" method="POST">
         <div class="mb-3">
           <label for="name" class="form-label">Nombre completo</label>
-          <input name="name" type="text" class="form-control" id="nombre" placeholder="Ej. Luis Ubillus" >
+          <input name="name" type="text" class="form-control" id="nombre" placeholder="Ej. Javier Lopez" >
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Correo electrónico</label>

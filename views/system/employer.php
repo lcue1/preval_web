@@ -133,7 +133,7 @@ if ($success): ?>
   <div class="collapse mb-4 form-container" id="userFormCollapse">
     <form action="" method="post">
       <h3 id="formTitle"><i class="bi bi-person-plus me-2"></i>Agregar usuario</h3>
-      <input type="hidden" name="employerId" id="employerId" value="">
+        <input type="hidden" name="employerId" id="employerId" value="">
       <div class="mb-3">
         <label for="userName" class="form-label">Nombre de usuario</label>
         <input type="text" class="form-control" id="userName" name="userName" placeholder="Ingrese un usuario" require>
