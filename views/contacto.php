@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="../css/reset.css">
         <link rel="stylesheet" href="../css/styles.css">
         <link rel="stylesheet" href="../css/productos.css">
+          <link rel="icon" type="image/png" href="../img/logo_s-removebg-preview.png">
 
         <style>
             .titulo-contacto {
@@ -119,6 +120,8 @@
     </div>
   </div>
 </section>
+<script src="/preval_web/js/main.js"></script>
+
 <script src="/preval_web/public/js/removeMessage.js"></script>
 <script>
 

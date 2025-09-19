@@ -8,7 +8,8 @@
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-  <style>
+
+          <link rel="icon" type="image/png" href="/preval_web/img/logo_s-removebg-preview.png">   <style>
     :root {
       --primaryColor: #0e1b2e;
       --secundaryColor: #50acdd;
@@ -96,6 +97,8 @@
       }
     }
   </style>
+  
+  <script src="/preval_web/utils/validationsInputs.js" defer></script>
 </head>
 <body>
 
@@ -129,19 +132,19 @@ if ($success): ?>
     </button>
   </div>
 
-  <!-- Contenedor colapsable del FORMULARIO -->
+  <!-- add user Colapse container  -->
   <div class="collapse mb-4 form-container" id="userFormCollapse">
-    <form action="" method="post">
+    <form action="" method="post" id="addUserForm">
       <h3 id="formTitle"><i class="bi bi-person-plus me-2"></i>Agregar usuario</h3>
         <input type="hidden" name="employerId" id="employerId" value="">
       <div class="mb-3">
         <label for="userName" class="form-label">Nombre de usuario</label>
-        <input type="text" class="form-control" id="userName" name="userName" placeholder="Ingrese un usuario" require>
+        <input type="text" class="form-control" id="userName" name="userName" placeholder="Ingrese un usuario" require oninput="onlyLetters(this)">
       </div>
 
       <div class="mb-3">
         <label for="name" class="form-label">Nombre completo</label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese un nombre" require>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese un nombre" require oninput="onlyLettersAndSpaces(this)">
       </div>
 
       <div class="mb-3">
@@ -162,7 +165,15 @@ if ($success): ?>
 
       <div class="mb-3">
         <label for="password" class="form-label">Contraseña</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese su contraseña">
+        <input type="password" 
+       class="form-control" 
+       id="password" 
+       name="password" 
+       placeholder="Números, letras y -_$" 
+       oninput="onlyPasswordChars(this)" 
+       minlength="6" 
+       required>
+        
         <label class="form-label">Estado</label>
       </div><div class="mb-3">
         <div class="form-check form-check-inline">
@@ -304,8 +315,16 @@ function deleteEmployer( event,idRmployer) {
     // Redireccionar al endpoint de eliminación
     window.location.href = `/preval_web/public/system/employer.php?idEmployer=${idRmployer}`;
   }
-  
 }
+
+  const form = document.getElementById('addUserForm');
+  form.addEventListener('submit', function(e) {
+    const password = document.getElementById('password').value;
+    if (password.length < 6) {
+      e.preventDefault(); // detiene el submit
+      alert("La contraseña debe tener al menos 6 caracteres.");
+    }
+  });
 </script>
 
 </body>

@@ -15,15 +15,17 @@
     
         <link rel="stylesheet" href="./css/reset.css">
         <link rel="stylesheet" href="./css/styles.css">
-    
+          <link rel="icon" type="image/png" href="./img/logo_s-removebg-preview.png">
+
+    <style>
+    .subtitle{
+      color: var(--secundaryColor);
+      border-bottom: 1px solid var(--primaryColor);
+    }
+    </style>
 </head>
 <body>
-     <!-- 
-    
-    <div class="initModalScreem" id="initModalScreen">
-a       <p class="initModalScreem--text" id="textInitModalScreen"></p>
-    </div>
-     -->
+  
 <div class="principalContainer">
     <header class="header">
        <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/preval_web/parcials/navegacion.php"; ?>
@@ -53,8 +55,8 @@ a       <p class="initModalScreem--text" id="textInitModalScreen"></p>
 </div>
 
     <!-- Main -->
-     <div class="container my-5">
-        <h2>Descubre lo que hacemos.</h2>
+     <div class="containe r my-5">
+  <h2 class="text-center mb-4 subtitle" >Descubre lo que hacemos</h2>
   <div class="row g-4">
 
     <!-- 1. Fibra de vidrio -->

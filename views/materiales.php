@@ -16,8 +16,8 @@
         <link rel="stylesheet" href="../css/reset.css">
         <link rel="stylesheet" href="../css/styles.css">
         <link rel="stylesheet" href="../css/productos.css">
-        <link rel="stylesheet" href="../css/modals.css">
         <link rel="stylesheet" href="../css/materiales.css  ">
+          <link rel="icon" type="image/png" href="../img/logo_s-removebg-preview.png">
 </head>
 <body>
   <div id="modalContainerProductos" class="modalContainerProductos"><!--Muestra el detalle de cada producto al hacer click-->
@@ -144,10 +144,9 @@
     </div>
   </div>
   </footer>
-
-
-
-
+  
    </div>
+   <script src="/preval_web/js/main.js"></script>
+
 </body>
 </html>

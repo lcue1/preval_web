@@ -16,7 +16,14 @@
         <link rel="stylesheet" href="../css/reset.css">
         <link rel="stylesheet" href="../css/styles.css">
         <link rel="stylesheet" href="../css/productos.css">
-        <link rel="stylesheet" href="../css/modals.css">
+          <link rel="icon" type="image/png" href="../img/logo_s-removebg-preview.png">
+        <style>
+          
+    .subtitle{
+      color: var(--secundaryColor);
+      border-bottom: 1px solid var(--primaryColor);
+    }
+        </style>
     
 </head>
 <body>
@@ -30,7 +37,8 @@
     </header>
    
     <!--productos--><div class="container my-5">
-  <h2>Productos y servicios</h2>
+      
+  <h2 class="text-center mb-4 subtitle" >Productos y servicios</h2>
   <div class="row justify-content-center">
     
     <div class="col-sm-12 col-md-6 col-lg-4 mb-4">

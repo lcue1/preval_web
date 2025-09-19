@@ -32,7 +32,7 @@ const hadleMenu = ()=>{
     const btnMenu = document.getElementById("btnMenu");
     btnMenu.addEventListener("click", (e) => {
         e.preventDefault();
-        console.log("click");
+        
         constnavbarContainer = document.getElementById("navbarContainer");
         navbarContainer.classList.toggle("navbarContainer--active");
     })
