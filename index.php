@@ -13,7 +13,6 @@
 
       <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display&display=swap" rel="stylesheet">
     
-        <link rel="stylesheet" href="./css/reset.css">
         <link rel="stylesheet" href="./css/styles.css">
           <link rel="icon" type="image/png" href="./img/logo_s-removebg-preview.png">
 

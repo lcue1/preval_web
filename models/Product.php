@@ -23,6 +23,26 @@ class Product{
             }
         }
     }
+     public function getProducctById($conexion, $productId) {
+         try {
+             $stmt = $conexion->prepare("SELECT * FROM product WHERE productId = ?");
+             if (!$stmt) {
+                 throw new Exception("Error preparing statement: " . $conexion->error);
+             }
+             $stmt->bind_param("i", $productId);
+             if (!$stmt->execute()) {
+                 throw new Exception("Error executing statement: " . $stmt->error);
+             }
+             $result = $stmt->get_result();
+             return $result->fetch_object();
+         } catch (Exception $e) {
+             throw $e;
+         } finally {
+             if (isset($stmt)) {
+                 $stmt->close();
+             }
+         }
+    }
     function saveProduct($conexion, $productData) {
         try {
             $stmt = $conexion->prepare("INSERT INTO product (productName, quantity, material) VALUES (?, ?, ?)");
