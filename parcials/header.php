@@ -1,14 +1,16 @@
-<style>
-    .active {
-    border-bottom: 2px solid #50acdd;
-}
-</style>
-<?php
-// Obtener el nombre del archivo actual (ej: "index.php")
-$current_page = basename($_SERVER['PHP_SELF']); 
-?>
 
-<nav class="navigationbar">
+
+<link rel="stylesheet" href="/preval_web/css/reset.css">
+<link rel="stylesheet" href="/preval_web/css/header.css">
+<?php
+// Get the current page name
+$current_page = basename($_SERVER['PHP_SELF']); //allows set active class to nav links
+?>
+<header>
+
+    <img class="header__img" src="/preval_web/img/logo_preval_s.png" alt="Logo de preval">
+    <h1 class="header__title">Preval</h1>
+    <nav class="navigationbar">
     <a href="#" class="navbar__btnContainer" id="btnMenu">
         <i class="fas fa-bars navbar__icon"></i>
     </a>
@@ -16,7 +18,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <li class="navbarContainer__item">
             <a 
                 href="/preval_web/index.php" 
-                class="navbarContainer__link <?= ($current_page == '/preval_web/public/index.php') ? 'active' : '' ?>"
+                class="navbarContainer__link <?= ($current_page == 'index.php') ? 'active' : '' ?>"
             >
                 Inicio
             </a>
@@ -56,4 +58,6 @@ $current_page = basename($_SERVER['PHP_SELF']);
             </a>
         </li>
     </ul>
-</nav>
+    
+    </nav>
+</header>

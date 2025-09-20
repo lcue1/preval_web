@@ -1,0 +1,4 @@
+  .subtitle{
+      color: var(--secundaryColor);
+      border-bottom: 1px solid var(--primaryColor);
+    }

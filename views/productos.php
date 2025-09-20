@@ -14,27 +14,20 @@
       <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display&display=swap" rel="stylesheet">
     
         <link rel="stylesheet" href="../css/reset.css">
-        <link rel="stylesheet" href="../css/styles.css">
+        <link rel="stylesheet" href="../css/body.css">
         <link rel="stylesheet" href="../css/productos.css">
-          <link rel="icon" type="image/png" href="../img/logo_s-removebg-preview.png">
         <style>
           
-    .subtitle{
-      color: var(--secundaryColor);
-      border-bottom: 1px solid var(--primaryColor);
-    }
+  
         </style>
     
 </head>
 <body>
   <div id="modalContainerProductos" class="modalContainerProductos"><!--Muestra el detalle de cada producto al hacer click-->
   </div>
-<div class="principalContainer">
-    <header class="header">
-       <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/preval_web/parcials/navegacion.php"; ?>
-        <h1 class="header__title">Preval</h1>
-        <img class="header__img" src="../img/logo_s-removebg-preview.png" alt="">
-    </header>
+   
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . "/preval_web/parcials/header.php"; ?>
+
    
     <!--productos--><div class="container my-5">
       
@@ -124,63 +117,7 @@ Contamos con grúas hidráulicas de alta capacidad para izaje y montaje de carga
 </div><!--fin productos-->
 
 <!-- Futter -->
-    <footer class="text-white pt-5 pb-4 futter">
-  <div class="container text-center text-md-start">
-    <div class="row text-center text-md-start">
-      <!-- Columna 1: Logo y descripción -->
-      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-        <h5 class="text-uppercase mb-4 font-weight-bold futter__title" >Preval</h5>
-        <p>Encuentra recubrimientos, tanques resevorios, filtrado de agua y mas que se ajusten a tus necesidades..</p>
-      </div>
-
-      <!-- Columna 2: Enlaces rápidos -->
-      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-        <h5 class="text-uppercase mb-4 font-weight-bold">Enlaces</h5>
-        <p><a href="#" class="text-white text-decoration-none">Inicio</a></p>
-        <p><a href="#" class="text-white text-decoration-none">Productos</a></p>
-        <p><a href="#" class="text-white text-decoration-none">Ofertas</a></p>
-        <p><a href="#" class="text-white text-decoration-none">Contacto</a></p>
-      </div>
-
-      <!-- Columna 3: Contacto -->
-      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-        <h5 class="text-uppercase mb-4 font-weight-bold">Contacto</h5>
-        <p><i class="bi bi-geo-alt-fill me-2"></i> Quito (San Antonio de Pichincha) , Ecuador</p>
-        <p><i class="bi bi-envelope-fill me-2"></i> contacto@preval.com</p>
-        <p><i class="bi bi-phone-fill me-2"></i> +593 987654321`</p>
-      </div>
-
-      <!-- Columna 4: Redes sociales -->
-      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mt-3">
-        <h5 class="text-uppercase mb-4 font-weight-bold">Síguenos</h5>
-        <a href="#" class="text-white me-3 fs-4"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="text-white me-3 fs-4"><i class="fab fa-x-twitter"></i></a>
-        <a href="#" class="text-white me-3 fs-4"><i class="fab fa-tiktok"></i></a>
-
-    </div>
-    </div>
-
-    <!-- Línea horizontal -->
-    <hr class="mb-4 mt-4" style="border-color: rgba(255, 255, 255, 0.2);">
-
-    <!-- Footer bottom -->
-    <div class="row align-items-center">
-      <div class="col-md-7 col-lg-8">
-        <p class="text-white mb-0">&copy; 2025 Prevalp. Todos los derechos reservados.</p>
-      </div>
-      <div class="col-md-5 col-lg-4">
-        <div class="text-center text-md-end">
-          <a href="#" class="text-white text-decoration-none">Política de privacidad</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  </footer>
-
-
-
-
-</div>
+ <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/preval_web/parcials/footer.php"; ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="../js/main.js"></script>
