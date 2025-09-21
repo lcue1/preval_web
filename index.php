@@ -14,6 +14,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="/preval_web/css/body.css">
+    <link rel="icon" type="image/png" href="/preval_web/img/logo_s.jpg"> 
+
 
 </head>
 <body>

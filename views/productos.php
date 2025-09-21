@@ -15,18 +15,19 @@
     
         <link rel="stylesheet" href="../css/reset.css">
         <link rel="stylesheet" href="../css/body.css">
-        <link rel="stylesheet" href="../css/productos.css">
-        <style>
-          
-  
-        </style>
+    <link rel="icon" type="image/png" href="/preval_web/img/logo_s.jpg"> 
+    
     
 </head>
 <body>
-  <div id="modalContainerProductos" class="modalContainerProductos"><!--Muestra el detalle de cada producto al hacer click-->
-  </div>
+  
    
 <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/preval_web/parcials/header.php"; ?>
+<!-- Modals -->
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . "/preval_web/modals/productsModal.php"; ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . "/preval_web/modals/coattingModal.php"; ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . "/preval_web/modals/purifiersModal.php"; ?>
+
 
    
     <!--productos--><div class="container my-5">
@@ -42,7 +43,7 @@
           <p class="card-text">
             Elaboramos tanques reservorios ideales para el almacenamiento de agua en diferentes capacidades. Su diseño robusto garantiza resistencia y durabilidad para usos domésticos, agrícolas e industriales.
             .</p>
-          <a   class="btn btn-primary" onclick="showModal('../modals/productosModal.html','productModal')">Ver más</a>
+        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal">Ver más</a>
         </div>
       </div>
     </div>
@@ -55,7 +56,7 @@
           <p class="card-text">
 Aplicamos recubrimientos con fibra de vidrio que refuerzan la estructura interna de los tanques, piscinas o estanques, protegiéndolos contra la corrosión, los rayos UV.
           </p>
-          <a   class="btn btn-primary" onclick="showModal('../modals/recubrimientosModal.html','recubrimientosModal')">Ver más</a>
+<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#coattingModal">Ver más</a>
         </div>
       </div>
     </div>
@@ -67,7 +68,7 @@ Aplicamos recubrimientos con fibra de vidrio que refuerzan la estructura interna
           <p class="card-text">
             Los purificadores de agua eficientes, eliminan impurezas, sedimentos y microorganismos, asegurando un suministro limpio, puro  y seguro para el consumo de los habitantes de la comunidad.
           </p>
-          <a   class="btn btn-primary" onclick="showModal('../modals/purificadoresModal.html','purificadoresModal')">Ver más</a>
+<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#purifiersModal">Ver más</a>
         </div>
       </div>
     </div>
@@ -125,19 +126,9 @@ Contamos con grúas hidráulicas de alta capacidad para izaje y montaje de carga
 
 <script>
  //showModal('../modals/recubrimientosModal.html')
-  function showModal(url, id_modal){
-    const modalContainer = document.getElementById('modalContainerProductos');
-    fetch(url)
-      .then(response => response.text())
-      .then(html => {
-        modalContainer.innerHTML = html;
-        modalContainer.classList.add('showModalContainerProductos');
-        
-      // Crea una instancia del modal de Bootstrap
-      const modal = new bootstrap.Modal(document.getElementById(id_modal));
-      modal.show();
-      })
-      .catch(error => console.error('Error al cargar el modal:', error));
+  function showModal(){
+  
+    
   }
 </script>
 

@@ -14,48 +14,23 @@
 
       <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display&display=swap" rel="stylesheet">
     
-        <link rel="stylesheet" href="../css/reset.css">
-        <link rel="stylesheet" href="../css/styles.css">
-        <link rel="stylesheet" href="../css/productos.css">
-          <link rel="icon" type="image/png" href="../img/logo_s-removebg-preview.png">
+        <link rel="stylesheet" href="/preval_web/css/reset.css">
+        <link rel="stylesheet" href="/preval_web/css/body.css">
+    <link rel="icon" type="image/png" href="/preval_web/img/logo_s.jpg"> 
 
-        <style>
-            .titulo-contacto {
-  font-family: 'Noto Serif Display', serif;
-  font-weight: bold;
-  color: var(--primaryColor);
-  background: linear-gradient(to right, var(--primaryColor), var(--secundaryColor));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
-.descripcion-contacto {
-  max-width: 700px;
-  margin: 0 auto;
-  font-size: 1.1rem;
-  color: #444;
-}
 
-        </style>
+
     
 </head>
 <body>
-  <div id="modalContainerProductos" class="modalContainerProductos"><!--Muestra el detalle de cada producto al hacer click-->
-  </div>
-<div class="principalContainer">
-    <header class="header">
-             <?php 
-             require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/parcials/navegacion.php";
-             require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/utils/FlashMessage.php";
-             ?>
+    <?php require_once $_SERVER['DOCUMENT_ROOT'] . "/preval_web/parcials/header.php"; ?>
 
-        <h1 class="header__title">Preval</h1>
-        <img class="header__img" src="../img/logo_s-removebg-preview.png" alt="">
-    </header>
+  
    </div>
    <section class="container my-5">
-  <h2 class="text-center mb-4 titulo-contacto" >Contáctanos</h2>
-  <p class="text-center mb-5 descripcion-contacto">
+  <h2 class="text-center mb-4 subtitle" >Contáctanos</h2>
+  <p class="text-center mb-5 descripcion">
     Si deseas más información sobre nuestros servicios o productos, por favor completa el siguiente formulario y nos pondremos en contacto contigo lo antes posible.
   </p>
 
@@ -120,6 +95,9 @@
     </div>
   </div>
 </section>
+
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . "/preval_web/parcials/footer.php"; ?>
+
 <script src="/preval_web/js/main.js"></script>
 
 <script src="/preval_web/public/js/removeMessage.js"></script>

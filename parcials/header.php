@@ -48,13 +48,13 @@ $current_page = basename($_SERVER['PHP_SELF']); //allows set active class to nav
                 Contacto
             </a>
         </li>
-        <li class="navbarContainer__item">
+         <li class="navbarContainer__item">
             <a 
-                id="sistemLink"
                 href="/preval_web/public/login.php" 
                 class="navbarContainer__link <?= ($current_page == 'login.php') ? 'active' : '' ?>"
             >
-                Empleados
+            
+                Sistema
             </a>
         </li>
     </ul>

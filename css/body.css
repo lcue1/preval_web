@@ -1,4 +1,60 @@
-  .subtitle{
-      color: var(--secundaryColor);
-      border-bottom: 1px solid var(--primaryColor);
-    }
+
+.subtitle {
+  font-family: 'Noto Serif Display', serif;
+  font-weight: bold;
+  font-size: 2.5rem;
+  background: linear-gradient(to right, var(--primaryColor), var(--secundaryColor));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.descripcion {
+  max-width: 800px;
+  margin: 0 auto;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.material-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid var(--secundaryColor);
+  border-radius: 16px;
+}
+
+.material-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+.material-card .card-title {
+  color: var(--primaryColor);
+  font-weight: 600;
+}
+
+.material-card .card-text {
+  color: #444;
+  font-family: 'Inter', sans-serif;
+}
+.material-card .card-body {
+  background: linear-gradient(135deg, var(--primaryColor) 0%, var(--secundaryColor) 100%);
+  color: var(--textColor);
+  border-radius: 0 0 16px 16px;
+  padding: 1.5rem;
+  transition: background 0.3s ease;
+}
+
+.material-card .card-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+  color: var(--textColor);
+}
+
+.material-card .card-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--textColor);
+}
