@@ -9,95 +9,10 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
-          <link rel="icon" type="image/png" href="/preval_web/img/logo_s-removebg-preview.png">   <style>
-    :root {
-      --primaryColor: #0e1b2e;
-      --secundaryColor: #50acdd;
-      --textColor: #fff;
-      --fontFamily: 'Poppins', sans-serif;
-    }
-    
-    body {
-      font-family: var(--fontFamily);
-    }
-    
-    .btn-custom-primary {
-      background-color: var(--primaryColor);
-      color: var(--textColor);
-      border: none;
-      transition: all 0.3s ease;
-    }
-    
-    .btn-custom-primary:hover {
-      background-color: var(--secundaryColor);
-      transform: translateY(-2px);
-    }
-    
-    .btn-custom-secondary {
-      background-color: var(--secundaryColor);
-      color: var(--textColor);
-      border: none;
-    }
-    
-    .btn-custom-secondary:hover {
-      background-color: #3d8cb5;
-      color: var(--textColor);
-    }
-    
-    .table-custom thead {
-      background-color: var(--primaryColor);
-      color: var(--textColor);
-    }
-    
-    .table-custom tbody tr:hover {
-      background-color: rgba(80, 172, 221, 0.1);
-    }
-    
-    .form-container {
-      background-color: #f8f9fa;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(14, 27, 46, 0.1);
-    }
-    
-    .btn-container {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    
-    h3 {
-      color: var(--primaryColor);
-      margin-bottom: 1.5rem;
-      font-weight: 600;
-    }
-    
-    .form-label {
-      font-weight: 500;
-      color: var(--primaryColor);
-    }
-    
-    .alert-custom {
-      background-color: var(--secundaryColor);
-      color: var(--textColor);
-      border: none;
-    }
-    
-    .bi-pencil-square {
-      color: var(--primaryColor);
-    }
-    .title{
-      color: var(--secundaryColor);
-      border-bottom: 1px solid var(--primaryColor);
-    }
-    
-    @media (max-width: 768px) {
-      .btn-container {
-        flex-direction: column;
-      }
-    }
-  </style>
-  
+
+
+    <link rel="icon" type="image/png" href="/preval_web/img/logo_s.jpg">     
+  <link rel="stylesheet" href="/preval_web/css/tablePages.css">
   <script src="/preval_web/utils/validationsInputs.js" defer></script>
 </head>
 <body>

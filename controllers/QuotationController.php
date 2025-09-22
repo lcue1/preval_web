@@ -93,7 +93,18 @@ class QuotationController
     public function handlePostRequest()
     {
 
+        
         require_once $_SERVER["DOCUMENT_ROOT"] . "/preval_web/utils/FlashMessage.php";
+        $quotationId = $_POST['quotationId'] ?? null;
+        if ($_POST['transaction'] == 'delete' ) { //new record
+            if(!$quotationId){
+                FlashMessage::set('error', 'ID de cotizacion requerido para eliminar.');
+                header("Location: /preval_web/public/system/quotation.php");
+                exit();
+            }
+            
+            $this->deleteQuotation($quotationId);
+        }
         $postData = [
             'productId' => $_POST['productId'],
             'productCost' => $_POST['productCost'],
@@ -103,6 +114,7 @@ class QuotationController
             'distanceCost' => $_POST['distanceCost'],
             'transaction' => $_POST['transaction']
         ];
+         
         if ($_POST['transaction'] == 'add') {
             if (!$this->verifyInputs($postData)) {
                 FlashMessage::set('error', 'Todos los campos son requeritos.');
@@ -110,7 +122,7 @@ class QuotationController
                 exit();
             }
             $this->createQuotation();
-        } else  if ($_POST['transaction'] == 'showEdit') { //shows add view with info
+        } else  if ($_POST['transaction'] == 'showEdit') { //shows add view with info (edit)
             header("Location: /preval_web/public/system/quotation.php?action=edit&quotationId=" . $_POST['quotationId']);
             exit();
         } else if ($_POST['transaction'] == 'edit') { //does the edit action
@@ -132,6 +144,31 @@ class QuotationController
             }
         }
         return true;
+    }
+
+    private function deleteQuotation($quotationId)
+    {
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/preval_web/models/Quotation.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/preval_web/includes/conexion.php';
+
+        try {
+            $conexion = (new Conexion())->conectar();
+            $quotation = new Quotation();
+            if ($quotation->deleteQuotation($conexion, $quotationId)) {
+                FlashMessage::set('success', 'Cotizacion eliminada.');
+                header("Location: /preval_web/public/system/quotation.php");
+                exit();
+            }
+        } catch (Exception $e) {
+            FlashMessage::set('error', $e);
+            header("Location: /preval_web/public/system/quotation.php");
+            exit();
+        } finally {
+            if (isset($conexion)) {
+                $conexion->close();
+            }
+        }
+
     }
     private function createQuotation()
     {
@@ -158,7 +195,7 @@ class QuotationController
         try {
             $conexion = (new Conexion())->conectar();
             $quotation = new Quotation();
-            $product = new Product();
+            $product = new Product();//get product data for pdf
             $productData = $product->getProducctById($conexion, $quotatiionData['productId']);
             $pdfData = array_merge((array)$productData, $quotatiionData);
 
@@ -181,6 +218,7 @@ class QuotationController
     private function editQuotation()
     {
         require_once $_SERVER['DOCUMENT_ROOT'] . '/preval_web/models/Quotation.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/preval_web/models/Product.php';
         require_once $_SERVER['DOCUMENT_ROOT'] . '/preval_web/includes/conexion.php';
 
         $dataToCalculate = [ //data to calculate total
@@ -203,8 +241,12 @@ class QuotationController
         try {
             $conexion = (new Conexion())->conectar();
             $quotation = new Quotation();
+            $product = new Product();//get product data for pdf
+            $productData = $product->getProducctById($conexion, $quotatiionData['productId']);
+            $pdfData = array_merge((array)$productData, $quotatiionData);
             if ($quotation->editQuotation($conexion, $quotatiionData)) {
-                FlashMessage::set('success', 'Registro agregado.');
+                FlashMessage::set('success', 'Cotizacion actualizada exitosamente!');
+                $this->generateFilePDF($pdfData);
                 header("Location: /preval_web/public/system/quotation.php");
                 exit();
             }

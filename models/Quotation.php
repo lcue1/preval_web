@@ -117,5 +117,26 @@ class Quotation
             }
         }
     }
+    public function deleteQuotation($conexion, $quotationId){
+        try{
+            $stmt = $conexion->prepare('DELETE FROM quotation WHERE quotationId = ?');
+            if(!$stmt){
+                throw new Exception('Quotation error: '.$conexion->error);
+            }
 
+            $stmt->bind_param('i', $quotationId);
+
+        if(!$stmt->execute()){
+            throw new Exception("Error deleting quotation".$conexion->error);
+        }
+        return true;
+
+        }catch(Exception $e){
+            throw $e;
+        } finally {
+            if (isset($stmt)) {
+                $stmt->close();
+            }
+        }
+    }
 }
