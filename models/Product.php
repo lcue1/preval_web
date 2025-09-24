@@ -45,11 +45,11 @@ class Product{
     }
     function saveProduct($conexion, $productData) {
         try {
-            $stmt = $conexion->prepare("INSERT INTO product (productName, quantity, material) VALUES (?, ?, ?)");
+            $stmt = $conexion->prepare("INSERT INTO product (productName, quantity, material, state) VALUES (?, ?, ?, ?)");
             if (!$stmt) {
                 throw new Exception("Error preparing statement: " . $conexion->error);
             }
-            $stmt->bind_param("sis", $productData['productName'], $productData['quantity'], $productData['material']);
+            $stmt->bind_param("siss", $productData['productName'], $productData['quantity'], $productData['material'], $productData['state']);
             if (!$stmt->execute()) {
                 throw new Exception("Error executing statement: " . $stmt->error);
             }
@@ -64,11 +64,12 @@ class Product{
     }
     function updateProduct($conexion, $productData) {
         try {
-            $stmt = $conexion->prepare("UPDATE product SET productName = ?, quantity = ?, material = ? WHERE productId = ?");
+            
+            $stmt = $conexion->prepare("UPDATE product SET productName = ?, quantity = ?, material = ?, state = ? WHERE productId = ?");
             if (!$stmt) {
                 throw new Exception("Error preparing statement: " . $conexion->error);
             }
-            $stmt->bind_param("sisi", $productData['productName'], $productData['quantity'], $productData['material'], $productData['productId']);
+            $stmt->bind_param("sissi", $productData['productName'], $productData['quantity'], $productData['material'] , $productData['state'], $productData['productId']);
             if (!$stmt->execute()) {
                 throw new Exception("Error executing statement: " . $stmt->error);
             }
@@ -83,7 +84,7 @@ class Product{
     }
     function deleteProduct($conexion, $productId) {
         try {
-            $stmt = $conexion->prepare("DELETE FROM product WHERE productId = ?");
+            $stmt = $conexion->prepare("UPDATE product SET state ='I' WHERE productId = ?");
             if (!$stmt) {
                 throw new Exception("Error preparing statement: " . $conexion->error);
             }

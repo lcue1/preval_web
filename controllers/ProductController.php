@@ -49,6 +49,7 @@ class ProductController
     }
     private function save()
     {
+
         try {
             require_once $_SERVER["DOCUMENT_ROOT"] . "/preval_web/includes/conexion.php";
             require_once $_SERVER["DOCUMENT_ROOT"] . "/preval_web/models/Product.php";
@@ -57,7 +58,8 @@ class ProductController
             $productData = [
                 'productName' => $_POST['productName'],
                 'quantity' => $_POST['quantity'],
-                'material' => $_POST['material']
+                'material' => $_POST['material'],
+                'state' => $_POST['state']
             ];
             foreach ($productData as $key => $value) {
                 if (empty($value)) {
@@ -88,7 +90,8 @@ class ProductController
                 'productId' => $_POST['productId'],
                 'productName' => $_POST['productName'],
                 'quantity' => $_POST['quantity'],
-                'material' => $_POST['material']
+                'material' => $_POST['material'],
+                'state' => $_POST['state']
             ];
             foreach($productData as $key => $value) {
                 if (empty($value)) {
