@@ -59,6 +59,7 @@ class ProductController
                 'productName' => $_POST['productName'],
                 'quantity' => $_POST['quantity'],
                 'material' => $_POST['material'],
+                'productCost' => $_POST['productCost'],
                 'state' => $_POST['state']
             ];
             foreach ($productData as $key => $value) {
@@ -91,6 +92,7 @@ class ProductController
                 'productName' => $_POST['productName'],
                 'quantity' => $_POST['quantity'],
                 'material' => $_POST['material'],
+                'productCost' => $_POST['productCost'],
                 'state' => $_POST['state']
             ];
             foreach($productData as $key => $value) {

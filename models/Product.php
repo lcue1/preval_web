@@ -44,12 +44,13 @@ class Product{
          }
     }
     function saveProduct($conexion, $productData) {
+        
         try {
-            $stmt = $conexion->prepare("INSERT INTO product (productName, quantity, material, state) VALUES (?, ?, ?, ?)");
+            $stmt = $conexion->prepare("INSERT INTO product (productName, quantity, material, productCost, state) VALUES (?, ?, ?, ?, ?)");
             if (!$stmt) {
                 throw new Exception("Error preparing statement: " . $conexion->error);
             }
-            $stmt->bind_param("siss", $productData['productName'], $productData['quantity'], $productData['material'], $productData['state']);
+            $stmt->bind_param("sdsds", $productData['productName'], $productData['quantity'], $productData['material'], $productData['productCost'], $productData['state']);
             if (!$stmt->execute()) {
                 throw new Exception("Error executing statement: " . $stmt->error);
             }
@@ -65,11 +66,11 @@ class Product{
     function updateProduct($conexion, $productData) {
         try {
             
-            $stmt = $conexion->prepare("UPDATE product SET productName = ?, quantity = ?, material = ?, state = ? WHERE productId = ?");
+            $stmt = $conexion->prepare("UPDATE product SET productName = ?, quantity = ?, material = ?, productCost = ?, state = ? WHERE productId = ?");
             if (!$stmt) {
                 throw new Exception("Error preparing statement: " . $conexion->error);
             }
-            $stmt->bind_param("sissi", $productData['productName'], $productData['quantity'], $productData['material'] , $productData['state'], $productData['productId']);
+            $stmt->bind_param("sdsdsi", $productData['productName'], $productData['quantity'], $productData['material'] , $productData['productCost'], $productData['state'], $productData['productId']);
             if (!$stmt->execute()) {
                 throw new Exception("Error executing statement: " . $stmt->error);
             }

@@ -43,7 +43,7 @@
                     <p class="text-muted"><?= isset($quotationId) ? 'Editar' : 'Complete todos los campos requeridos' ?></p>
                 </div>
 
-                <!-- Producto -->
+                <!-- Product -->
                 <div class="mb-3">
                     <label for="product" class="form-label fw-bold">
                         <i class="fas fa-box me-2"></i>Producto:
@@ -56,9 +56,11 @@
                             <option value="" disabled selected>Seleccione un producto</option>
                         <?php endif; ?>
                         <?php foreach ($products as $product): ?>
-                            <option value="<?= $product->productId ?>" data-cost="<?= $product->productCost ?>">
-                                <?= htmlspecialchars($product->productName) . ' (' . $product->productCost . '$, ' . $product->quantity . ' Litros)' ?>
-                            </option>
+                            <?php if($product->state === 'A'): ?>
+                                <option value="<?= $product->productId ?>" data-cost="<?= $product->productCost ?>">
+                                    <?= htmlspecialchars($product->productName) . ' (' . $product->productCost . '$, ' . $product->quantity . ' Litros)' ?>
+                                </option>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </select>
                 </div>

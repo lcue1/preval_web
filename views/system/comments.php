@@ -11,6 +11,7 @@
 
 
     <link rel="icon" type="image/png" href="/preval_web/img/logo_s.jpg">           
+    
           <style>
     :root {
       --primaryColor: #0e1b2e;
@@ -146,6 +147,7 @@ require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/utils/flashMessage.php";
     <?php else: ?>
     <?php foreach($comments as $comment): 
       // Asegurar que el ID existe y es válido
+      
       $commentId = isset($comment->id) ? $comment->id : uniqid();
     ?>
       <div class="col-md-6 col-lg-4 mb-4">

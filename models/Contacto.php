@@ -5,7 +5,7 @@ class Contacto {
 
     public function saveComment($conexion,$dataComment) {
         try {
-            $stmt = $conexion->prepare("INSERT INTO coments (name, email, phone, coment, state, date) VALUES (?, ?, ?, ?, 'E', NOW())");
+            $stmt = $conexion->prepare("INSERT INTO coments (name, email, phone, coment, state, date) VALUES (?, ?, ?, ?, 'P', NOW())");
             if (!$stmt) {
                 throw new Exception("Error en prepare: " . $conexion->error);
             }

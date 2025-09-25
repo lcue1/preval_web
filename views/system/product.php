@@ -57,13 +57,18 @@ require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/utils/flashMessage.php";
       </div>
 
       <div class="mb-3">
-        <label for="quantity" class="form-label">Cantidad</label>
-        <input type="number" step="0.01" class="form-control" id="quantity" name="quantity" placeholder="Ingrese la cantidad" required>
+        <label for="quantity" class="form-label">Cantidad en litros</label>
+        <input type="number" step="0.01"  min="0" class="form-control" id="quantity" name="quantity" placeholder="Ej: 350" required>
       </div>
 
       <div class="mb-3">
         <label for="material" class="form-label">Material</label>
         <input type="text" class="form-control" id="material" name="material" placeholder="Ingrese el material" required>
+      </div>
+      
+      <div class="mb-3">
+        <label for="productCost" class="form-label">Precio</label>
+        <input type="number" step="0.01" min="0" class="form-control" id="productCost" name="productCost" placeholder="Ej: 1500.56" required>
       </div>
       <label class="form-label">Estado</label>
       <<div class="mb-3">
@@ -103,6 +108,7 @@ require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/utils/flashMessage.php";
             <th><i class="bi bi-card-text me-2"></i>Nombre</th>
             <th><i class="bi bi-123 me-2"></i>Cantidad</th>
             <th><i class="bi bi-gear me-2"></i>Material</th>
+            <th><i class="bi bi-gear me-2"></i>Precio</th>
             <th><i class="bi bi-gear me-2"></i>Estado</th>
             <th><i class="bi bi-pencil me-2"></i>Editar</th>
             <th><i class="bi bi-trash me-2"></i>Eliminar</th>
@@ -114,12 +120,15 @@ require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/utils/flashMessage.php";
               <td colspan="6" class="text-center">No hay productos registrados</td>
             </tr>
           <?php else: ?>
-            <?php foreach($products as $product): ?>
+            <?php 
+            
+              foreach($products as $product): ?>
               <tr>
                 <td><?= $product->productId ?></td>
                 <td><?= htmlspecialchars($product->productName) ?></td>
                 <td><?= number_format($product->quantity, 2) ?></td>
                 <td><?= htmlspecialchars($product->material) ?></td>
+                <td><?= htmlspecialchars($product->productCost) ?></td>
                 <td><?= htmlspecialchars($product->state) ?></td>
                 <td>
                   <a href="#" class="btn btn-sm btn-outline-primary"
@@ -128,6 +137,7 @@ require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/utils/flashMessage.php";
                       '<?= htmlspecialchars($product->productName, ENT_QUOTES) ?>',
                       '<?= $product->quantity ?>',
                       '<?= htmlspecialchars($product->material, ENT_QUOTES) ?>',
+                      '<?= htmlspecialchars($product->productCost, ENT_QUOTES) ?>',
                       '<?= htmlspecialchars($product->state, ENT_QUOTES) ?>')">
                     <i class="bi bi-pencil-square"></i>
                   </a>
@@ -152,7 +162,7 @@ require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/utils/flashMessage.php";
 <script>
     
 
-  function editProduct(productId, productName, quantity, material, state, event) {
+  function editProduct(productId, productName, quantity, material, productCost, state, event) {
     if(event) event.preventDefault();
     
     document.getElementById('productId').value = productId;
@@ -161,6 +171,7 @@ require_once $_SERVER["DOCUMENT_ROOT"]."/preval_web/utils/flashMessage.php";
     document.getElementById('productName').value = productName;
     document.getElementById('quantity').value = quantity;
     document.getElementById('material').value = material;
+    document.getElementById('productCost').value = productCost;
     
          document.getElementById(state === 'A' ? 'active' : 'inactive').checked = true;
 
